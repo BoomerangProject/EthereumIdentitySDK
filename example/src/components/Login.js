@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import IdentitySelector from './IdentitySelector';
 import PropTypes from 'prop-types';
+import Logo from '../img/logo.png'
 
 class Login extends Component {
 
@@ -39,10 +40,9 @@ class Login extends Component {
     return (
       <div className="login-view">
         <div className="container">
-          <h1 className="main-title">Universal Logins</h1>
+        <img className="main-title" src={Logo}/>
           <p className="login-view-text">
-            This is an example app for implementing ERC1077&1078 in Ethereum.
-            You can use this example to build your own app.
+          Login to Boomerang using your email address. Don't have an account? Just enter your email address to create a new account.
           </p>
           <IdentitySelector
             onNextClick={() => this.onNextClick()}

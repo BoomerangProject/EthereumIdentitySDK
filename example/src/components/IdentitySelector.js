@@ -10,7 +10,7 @@ class IdentitySelector extends Component {
     super(props);
     this.state = {
       prefix: '',
-      suffix: this.props.ensDomains[0],
+      suffix: this.props.ensDomains[0], //TODO: this will be boomerang.eth or whatever domain we buy.
       identity: '',
       identityExist: false
     };
@@ -22,6 +22,7 @@ class IdentitySelector extends Component {
     const identityExist = !!(await this.props.identityExist(identity));
     this.setState({prefix, identity, identityExist});
     this.props.onChange(identity);
+    console.log(identity)
   }
 
   async updateSuffix(value) {
@@ -37,14 +38,9 @@ class IdentitySelector extends Component {
       <div>
         <IdentityExistingIndicator exist={this.state.identityExist} />
         <div className="id-selector">
-          <TextBox
-            placeholder="type an username"
+          <LoginTextBox
+            placeholder="Enter your email..."
             onChange={e => this.updatePrefix(e)}
-          />
-          <Dropdown
-            returnValue={this.updateSuffix.bind(this)}
-            title={this.props.ensDomains[0]}
-            dropdownContent={this.props.ensDomains}
           />
         </div>
         <Button onClick={this.props.onNextClick.bind(this) }>Next</Button>
@@ -52,6 +48,24 @@ class IdentitySelector extends Component {
     );
   }
 }
+
+const LoginTextBox = props => (
+  <input
+    className="full-input"
+    onChange={props.onChange}
+    type="text"
+    placeholder={props.placeholder}
+  />
+);
+
+
+/*
+          <Dropdown
+            returnValue={this.updateSuffix.bind(this)}
+            title={this.props.ensDomains[0]}
+            dropdownContent={this.props.ensDomains}
+          />
+*/
 
 IdentitySelector.propTypes = {
   onChange: PropTypes.func,
