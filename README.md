@@ -1,3 +1,6 @@
+# Boomerang Universal Login Proof of Concept
+The Boomerang Universal Login Proof of Concept will bootstrap the Ethereum IdentitySDK github project and build features upon it.
+
 [![Build Status](https://travis-ci.com/EthWorks/EthereumIdentitySDK.svg?branch=master)](https://travis-ci.com/EthWorks/EthereumIdentitySDK)
 
 # Ethereum IdentitySDK
