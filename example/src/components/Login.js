@@ -8,7 +8,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      identity: ''
+      identity: '',
+      email: ''
     };
     this.identityService = this.props.services.identityService;
     this.sdk = this.props.services.sdk;
@@ -27,12 +28,14 @@ class Login extends Component {
     } else {
       emitter.emit('setView', 'CreatingID');
       await this.identityService.createIdentity(this.state.identity);
+      await this.identityService.setEmail(this.state.email); //TEMPORARY -- this should be determined by login server request with identity.
+      //emitter.emit('setView', 'EmailVerification');
       emitter.emit('setView', 'Greeting');
     }
   }
 
-  onChange(identity) {
-    this.setState({identity});
+  onChange(identity, email) {
+    this.setState({identity: identity, email: email});
   }
 
   render() {

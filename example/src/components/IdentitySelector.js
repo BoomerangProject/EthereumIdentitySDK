@@ -6,11 +6,13 @@ import Dropdown from './Dropdown';
 import PropTypes from 'prop-types';
 import UsernameGenerator from '../utils/UsernameGenerator'
 
+const USERNAME_LENGTH = 20;
+
 class IdentitySelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      prefix: '',
+      email: '',
       suffix: this.props.ensDomains[0],
       identity: '',
       identityExist: false
@@ -18,23 +20,13 @@ class IdentitySelector extends Component {
     this.usernameGenerator = new UsernameGenerator();
   }
 
-  async updatePrefix(event) {
-    const prefix = event.target.value;
-    var email = `${prefix}`;
-    var identity = `${this.usernameGenerator.generateUsername(20, email)}.${this.state.suffix}`;
-    console.log(identity)
+  async updateEmail(event) {
+    var email = `${event.target.value}`;
+    var identity = `${this.usernameGenerator.generateUsername(USERNAME_LENGTH, email)}.${this.state.suffix}`;
     const identityExist = !!(await this.props.identityExist(identity));
-    this.setState({prefix, identity, identityExist});
-    this.props.onChange(identity);
+    this.setState({email, identity, identityExist});
+    this.props.onChange(identity, email);
   }
-
-  // async updateSuffix(value) {
-  //   const suffix = value;
-  //   const identity = `${this.state.prefix}.${suffix}`;
-  //   const identityExist = !!(await this.props.identityExist(identity));
-  //   this.setState({suffix, identity, identityExist});
-  //   this.props.onChange(identity);
-  // }
 
   render() {
     return (
@@ -43,7 +35,7 @@ class IdentitySelector extends Component {
         <div className="id-selector">
           <LoginTextBox
             placeholder="Enter your email..."
-            onChange={e => this.updatePrefix(e)}
+            onChange={e => this.updateEmail(e)}
           />
         </div>
         <Button onClick={this.props.onNextClick.bind(this) }>Next</Button>
@@ -60,15 +52,6 @@ const LoginTextBox = props => (
     placeholder={props.placeholder}
   />
 );
-
-
-/* Removed this because suffix is assumed to be boomerang.eth or some other boomerang domain
-          <Dropdown
-            returnValue={this.updateSuffix.bind(this)}
-            title={this.props.ensDomains[0]}
-            dropdownContent={this.props.ensDomains}
-          />
-*/
 
 IdentitySelector.propTypes = {
   onChange: PropTypes.func,

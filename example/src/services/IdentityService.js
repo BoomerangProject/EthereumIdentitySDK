@@ -2,10 +2,12 @@ class IdentityService {
   constructor(sdk, emitter) {
     this.sdk = sdk;
     this.emitter = emitter;
-    if (localStorage.getItem('identity')) {
-      this.identity = JSON.parse(localStorage.getItem('identity'));
+    if (localStorage.getItem('boomerang-identity')) {
+      this.identity = JSON.parse(localStorage.getItem('boomerang-identity'));
+      this.email = JSON.parse(localStorage.getItem('boomerang-email'));
     } else {
       this.identity = {};
+      this.email = {};
     }
   }
 
@@ -17,7 +19,7 @@ class IdentityService {
       privateKey,
       address
     };
-    localStorage.setItem("identity", JSON.stringify(this.identity)); //MAKE THIS MORE SECURE, THIS IS TEMPORARY WAY TO STORE USER IDENTITY.
+    localStorage.setItem("boomerang-identity", JSON.stringify(this.identity)); //MAKE THIS MORE SECURE, THIS IS TEMPORARY WAY TO STORE USER IDENTITY. (LOCALSTORAGE)
     this.emitter.emit('identityCreated', this.identity);
   }
 
@@ -31,6 +33,11 @@ class IdentityService {
       this.identity = {name: identity, address: identityAddress};
       return true;
     }
+  }
+
+  async setEmail(email) {
+    this.email = email;
+    localStorage.setItem("boomerang-email", JSON.stringify(this.email));
   }
 
   async isIdentitySavedLocally() {

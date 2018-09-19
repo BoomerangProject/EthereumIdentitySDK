@@ -9,9 +9,8 @@ class Greeting extends Component {
   }
 
   render() {
-    const {identity} = this.props.identityService;
     return (
-      <GreetingView identity={identity} onStartClick={this.showMainScreen.bind(this)}/>
+      <GreetingView identity={this.props.identityService.identity} email={this.props.identityService.email} onStartClick={this.showMainScreen.bind(this)}/>
     );
   }
 }

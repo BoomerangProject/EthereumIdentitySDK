@@ -10,7 +10,8 @@ class GreetingView extends Component {
           <div className="row">
             <img className="user-avatar" src={UserIco} alt="Avatar" />
             <div>
-              <p className="user-id">{this.props.identity.name}</p>
+              <p className="user-id">{this.props.email}</p>
+              <p className="wallet-address">{this.props.identity.address}</p>
               <p className="wallet-address">{this.props.identity.address}</p>
             </div>
           </div>
@@ -19,7 +20,7 @@ class GreetingView extends Component {
             <span className="checkmark-ico icon-check"></span>
             <div>
               <p>You created a new account</p>
-              <p>Recieved 10 clicks</p>
+              <p>Recieved 10 BOOM</p>
             </div>
           </div>
           <hr className="separator" />
@@ -30,7 +31,7 @@ class GreetingView extends Component {
               <p>
                 You
                 {'\''}
-                ll get 5 extra clicks
+                ll get 5 extra BOOM
               </p>
             </div>
           </div>
@@ -42,7 +43,7 @@ class GreetingView extends Component {
               <p>
                 You
                 {'\''}
-                ll get 10 extra clicks
+                ll get 10 extra BOOM
               </p>
             </div>
           </div>
@@ -54,12 +55,12 @@ class GreetingView extends Component {
               <p>
                 You
                 {'\''}
-                ll get 15 extra clicks
+                ll get 15 extra BOOM
               </p>
             </div>
           </div>
           <button className="btn fullwidth start-btn" onClick={this.props.onStartClick.bind(this)}>
-            Start using App
+            Start using Boomerang
           </button>
         </div>
       </div>

@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 
 class ProfileIdentity extends Component {
   render() {
-    const {identity} = this.props.identityService;
+    //const identityService = this.props.identityService;
     switch (this.props.type) {
     case 'identityAccount':
       return (
         <ProfileIdentityAccount
           userIco={UserIco}
-          userId={identity.name}
-          address={identity.address}
+          userId={this.props.identityService.email}
+          address={this.props.identityService.identity.address}
         />
       );
 
@@ -21,8 +21,8 @@ class ProfileIdentity extends Component {
       return (
         <ProfileIdentityHeader
           userIco={UserIco}
-          userId={identity.name}
-          address={identity.address}
+          userId={this.props.identityService.email}
+          address={this.props.identityService.identity.address}
         />
       );
 
