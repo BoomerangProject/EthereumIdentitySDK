@@ -21,10 +21,18 @@ class ContentContainer extends Component {
   componentDidMount() {
     const {emitter} = this.props.services;
     this.subscription = emitter.addListener('setView', this.setView.bind(this));
+    this.checkForIdentity();
   }
 
   componentWillUnmount() {
     this.subscription.remove();
+  }
+
+  async checkForIdentity() {
+    var hasIdentity = await this.props.services.identityService.isIdentitySavedLocally();
+    if (hasIdentity) {
+      this.setState({view: 'MainScreen'});
+    }
   }
 
   setView(view) {
