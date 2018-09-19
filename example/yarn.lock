@@ -3924,6 +3924,12 @@ iconv-lite@0.4.23, iconv-lite@^0.4.17, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
+idna-uts46@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/idna-uts46/-/idna-uts46-1.1.0.tgz#be098b2b7c1cabfbef87a8b80f626fac37366aea"
+  dependencies:
+    punycode "^2.1.0"
+
 ieee754@^1.1.4:
   version "1.1.12"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.12.tgz#50bf24e5b9c8bb98af4964c941cdb0918da7b60b"
@@ -6333,6 +6339,10 @@ punycode@^1.2.4, punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
+punycode@^2.1.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
+
 q@^1.1.2:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
@@ -6869,7 +6879,7 @@ secp256k1@^3.0.1:
     nan "^2.2.1"
     safe-buffer "^5.1.0"
 
-seedrandom@~2.4.2:
+seedrandom@^2.4.4, seedrandom@~2.4.2:
   version "2.4.4"
   resolved "https://registry.yarnpkg.com/seedrandom/-/seedrandom-2.4.4.tgz#b25ea98632c73e45f58b77cfaa931678df01f9ba"
 

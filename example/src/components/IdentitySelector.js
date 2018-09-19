@@ -4,34 +4,37 @@ import TextBox from '../views/TextBox';
 import Button from './Button';
 import Dropdown from './Dropdown';
 import PropTypes from 'prop-types';
+import UsernameGenerator from '../utils/UsernameGenerator'
 
 class IdentitySelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
       prefix: '',
-      suffix: this.props.ensDomains[0], //TODO: this will be boomerang.eth or whatever domain we buy.
+      suffix: this.props.ensDomains[0],
       identity: '',
       identityExist: false
     };
+    this.usernameGenerator = new UsernameGenerator();
   }
 
   async updatePrefix(event) {
     const prefix = event.target.value;
-    const identity = `${prefix}.${this.state.suffix}`;
+    var email = `${prefix}`;
+    var identity = `${this.usernameGenerator.generateUsername(20, email)}.${this.state.suffix}`;
+    console.log(identity)
     const identityExist = !!(await this.props.identityExist(identity));
     this.setState({prefix, identity, identityExist});
     this.props.onChange(identity);
-    console.log(identity)
   }
 
-  async updateSuffix(value) {
-    const suffix = value;
-    const identity = `${this.state.prefix}.${suffix}`;
-    const identityExist = !!(await this.props.identityExist(identity));
-    this.setState({suffix, identity, identityExist});
-    this.props.onChange(identity);
-  }
+  // async updateSuffix(value) {
+  //   const suffix = value;
+  //   const identity = `${this.state.prefix}.${suffix}`;
+  //   const identityExist = !!(await this.props.identityExist(identity));
+  //   this.setState({suffix, identity, identityExist});
+  //   this.props.onChange(identity);
+  // }
 
   render() {
     return (
@@ -59,7 +62,7 @@ const LoginTextBox = props => (
 );
 
 
-/*
+/* Removed this because suffix is assumed to be boomerang.eth or some other boomerang domain
           <Dropdown
             returnValue={this.updateSuffix.bind(this)}
             title={this.props.ensDomains[0]}
