@@ -21,6 +21,7 @@ class Login extends Component {
 
   async onNextClick() {
     const {emitter} = this.props.services;
+    await this.identityService.setEmail(this.state.email); //TEMPORARY -- this should be determined by login server request with identity.
     if (await this.identityExist(this.state.identity)) {
       emitter.emit('setView', 'ApproveConnection');
       await this.sdk.connect(this.identityService.identity.address);
@@ -28,7 +29,6 @@ class Login extends Component {
     } else {
       emitter.emit('setView', 'CreatingID');
       await this.identityService.createIdentity(this.state.identity);
-      await this.identityService.setEmail(this.state.email); //TEMPORARY -- this should be determined by login server request with identity.
       //emitter.emit('setView', 'EmailVerification');
       emitter.emit('setView', 'Greeting');
     }

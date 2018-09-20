@@ -11,7 +11,7 @@ class ApproveConnection extends Component {
 
   render() {
     const {identityService} = this.props.services;
-    return (<ApproveConnectionView onCancelClick={this.onCancelClick.bind(this)} identity={identityService.identity}/>);
+    return (<ApproveConnectionView onCancelClick={this.onCancelClick.bind(this)} identity={identityService.identity} email={identityService.email}/>);
   }
 }
 
