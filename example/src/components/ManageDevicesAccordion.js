@@ -28,7 +28,6 @@ class ManageDevices extends Component {
       <Collapsible
         title="Manage devices"
         subtitle="You currently have 3 authorized devices"
-        icon="icon-smartphone"
       >
         <ManageDevicesAccordionView
           devices={devices}

@@ -30,12 +30,18 @@ class PendingAuthorizations extends Component {
     this.setState({authorisations});
   }
 
-  onAcceptClick(publicKey) {
+  async onAcceptClick(publicKey) {
     const {identityService} = this.props.services;
     const to = identityService.identity.address;
     const {privateKey} = identityService.identity;
     const {sdk} = identityService;
-    sdk.addKey(to, publicKey, privateKey);
+    let i = await sdk.addKey(to, publicKey, privateKey);
+    console.log(i)
+  }
+
+  async onRejectClick(publicKey) {
+    console.log("Reject request");
+    // MOVE TO MAIN SCREEN
   }
 
   render() {
@@ -46,7 +52,7 @@ class PendingAuthorizations extends Component {
           <RequestsBadge setView={this.props.setView} services={this.props.services}/>
           <BackBtn setView={this.props.setView} />
         </HeaderView>
-        <PendingAuthorizationsView setView={this.props.setView} authorisations={this.state.authorisations} onAcceptClick={this.onAcceptClick.bind(this)}/>
+        <PendingAuthorizationsView setView={this.props.setView} authorisations={this.state.authorisations} onAcceptClick={this.onAcceptClick.bind(this)} onRejectClick={this.onRejectClick.bind(this)}/>
       </div>
     );
   }

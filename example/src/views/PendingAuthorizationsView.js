@@ -6,8 +6,8 @@ class PendingAuthorizationsView extends Component {
   renderEvent(authorisation) {
     return (<div>
       <p className="pending-authorizations-text" key={authorisation.key}>Have you requested to log from this address <span className="bold">{authorisation.key}</span> this {authorisation.label}</p>
-      <button className="btn-alt fullwidth" onClick={() => this.props.onAcceptClick(authorisation.key)}>ACCEPT REQUEST <br/><span className="click-cost">costs 1 click</span></button>
-      <button className="btn fullwidth">Deny request</button>
+      <button className="btn-alt fullwidth" onClick={() => this.props.onAcceptClick(authorisation.key)}>ACCEPT REQUEST <br/><span className="click-cost">costs 1 BOOM</span></button>
+      <button className="btn fullwidth" onClick={() => this.props.onRejectClick(authorisation.key)}>Deny request</button>
     </div>);
   }
 

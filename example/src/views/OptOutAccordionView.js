@@ -6,7 +6,6 @@ const OptOutAccordionView = props => (
   <Collapsible
     title="Opt Out"
     subtitle="Decentalize your account"
-    icon="icon-printer"
   >
     <p className="advice-text">
       If you want to have a completely decentralized and trustless account, you should opt out of Boomerang's login services. 

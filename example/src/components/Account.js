@@ -5,6 +5,7 @@ import ProfileIdentity from './ProfileIdentity';
 import ManageDevicesAccordion from './ManageDevicesAccordion';
 import BackupCodeAccordionView from '../views/BackupCodeAccordionView';
 import OptOutAccordionView from '../views/OptOutAccordionView';
+import DeregisterAccordionView from '../views/DeregisterAccordionView';
 import TrustedFriendsAccordionView from '../views/TrustedFriendsAccordionView';
 import SettingsAccordion from './SettingsAccordion';
 import PropTypes from 'prop-types';
@@ -17,6 +18,12 @@ class Account extends Component {
 
   setView(view) {
     this.emitter.emit('setView', view);
+  }
+
+  deregister() {
+    console.log("Deregistering device....")
+    this.props.identityService.clearIdentity();
+    window.location.reload();
   }
 
   render() {
@@ -35,7 +42,7 @@ class Account extends Component {
           <hr className="separator" />
           <OptOutAccordionView setView={this.setView.bind(this)} />
           <hr className="separator" />
-          <SettingsAccordion />
+          <DeregisterAccordionView deregister={this.deregister.bind(this)} />
           <hr className="separator" />
         </div>
       </div>

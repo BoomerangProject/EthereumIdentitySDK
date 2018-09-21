@@ -45,6 +45,10 @@ class EthereumIdentitySDK {
     return await this.execute(to, message, privateKey);
   }
 
+  // async rejectPendingAuthorization(to, publicKey, privateKey) {
+  //   const url = `${this.relayerUrl}/authorisation`;
+  // }
+
   async removeKey(to, address, privateKey) {
     const key = addressToBytes32(address);
     const {data} = new Interface(Identity.interface).functions.removeKey(key, MANAGEMENT_KEY);
@@ -103,7 +107,7 @@ class EthereumIdentitySDK {
       return identityAddress;
     }
     return false;
-  }cd
+  }
 
   async resolveName(identity) {
     this.config = this.config || (await this.getRelayerConfig()).config;

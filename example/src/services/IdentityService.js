@@ -23,6 +23,17 @@ class IdentityService {
     this.emitter.emit('identityCreated', this.identity);
   }
 
+  async clearIdentity() {
+    this.identity = {};
+    this.email = {};
+    localStorage.clear();
+    // Use sdk to de-register this public key from identity contract
+  }
+
+  async deregisterDevice(deviceKey){
+    // Use device key to deregister a device
+  }
+
   async execute(message) {
     await this.sdk.execute(this.identity.address, message, this.identity.privateKey);
   }
@@ -37,7 +48,7 @@ class IdentityService {
 
   async setEmail(email) {
     this.email = email;
-    localStorage.setItem("boomerang-email", JSON.stringify(this.email));
+    localStorage.setItem("boomerang-email", JSON.stringify(email));
   }
 
   async isIdentitySavedLocally() {
