@@ -8,7 +8,16 @@
   background: #1e9384
 
 .btn:hover
+  background: #87c5be
+  transition: transform 0.25s ease-in-out, background 0.5s ease-in-out
+
+.btn:hover
     background: #87c5be
+    transform: translate3d(0, -1px, 0)
+
+.btn:active
+    background: #87c5be
+    transform: translate3d(0, 3px, 0)
 
 .btn-alt
   height: 65px
@@ -18,11 +27,11 @@
   font-weight: 700
   margin-bottom: 20px
   font-size: 20px
-  
+
 .btn-alt .click-cost
   font-weight: 300
   font-style: italic
-  
+
 .cancel-btn
   margin-top: 50px
 
