@@ -3,15 +3,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class ApproveConnection extends Component {
+  constructor(props) {
+    super(props);
+    this.sdk = this.props.services.sdk;
+    this.identityService = this.props.services.identityService;
+  }
 
   onCancelClick() {
     const {emitter} = this.props.services;
-    emitter.emit('setView', 'Login');  
+    emitter.emit('setView', 'Login');
+    this.identityService.cancelSubscription();
   }
 
   render() {
-    const {identityService} = this.props.services;
-    return (<ApproveConnectionView onCancelClick={this.onCancelClick.bind(this)} identity={identityService.identity} email={identityService.email}/>);
+    return (<ApproveConnectionView
+      onCancelClick={this.onCancelClick.bind(this)}
+      identity={this.identityService.identity}
+      email={this.identityService.email}
+    />);
   }
 }
 

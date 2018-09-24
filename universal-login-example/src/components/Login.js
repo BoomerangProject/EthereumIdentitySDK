@@ -24,10 +24,7 @@ class Login extends Component {
     await this.identityService.setEmail(this.state.email); //TEMPORARY -- this should be determined by login server request with identity.
     if (await this.identityExist(this.state.identity)) {
       emitter.emit('setView', 'ApproveConnection');
-      let i = await this.sdk.connect(this.identityService.identity.address);
-      console.log(i);
-      //emitter.emit('setView', 'MainScreen');
-      //TODO: Move to the next screen when done
+      await this.identityService.connect();
     } else {
       emitter.emit('setView', 'CreatingID');
       await this.identityService.createIdentity(this.state.identity);

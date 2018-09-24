@@ -1,3 +1,5 @@
+import {Wallet} from 'ethers';
+
 class IdentityService {
   constructor(sdk, emitter) {
     this.sdk = sdk;
@@ -8,6 +10,29 @@ class IdentityService {
     } else {
       this.identity = {};
       this.email = {};
+    }
+  }
+
+  async connect() {
+    const privateKey = await this.sdk.connect(this.identity.address);
+    const {address} = new Wallet(privateKey);
+    this.subscription = this.sdk.subscribe('KeyAdded', this.identity.address, (event) => {
+      if (event.address == address) {
+        this.cancelSubscription();
+        this.identity = {
+          name: this.identity.name,
+          privateKey,
+          address: this.identity.address
+        };
+        this.emitter.emit('setView', 'MainScreen');
+      }
+    });
+  }
+
+  cancelSubscription() {
+    if (this.subscription) {
+      this.subscription.remove();
+      this.subscription = null;
     }
   }
 

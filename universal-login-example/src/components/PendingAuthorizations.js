@@ -19,11 +19,11 @@ class PendingAuthorizations extends Component {
   componentDidMount() {
     const {address} = this.identityService.identity;
     this.setState({authorisations: this.authorisationService.pendingAuthorisations});
-    this.authorisationService.subscribe(address, this.onAuthorisationChanged.bind(this));
+    this.subscription = this.authorisationService.subscribe(address, this.onAuthorisationChanged.bind(this));
   }
 
   componentWillUnmount() {
-    //TODO: Unsubscribe
+    this.subscription.remove();
   }
 
   onAuthorisationChanged(authorisations) {
@@ -35,13 +35,11 @@ class PendingAuthorizations extends Component {
     const to = identityService.identity.address;
     const {privateKey} = identityService.identity;
     const {sdk} = identityService;
-    let i = await sdk.addKey(to, publicKey, privateKey);
-    console.log(i)
+    await sdk.addKey(to, publicKey, privateKey);
   }
 
   async onRejectClick(publicKey) {
     console.log("Reject request");
-    // MOVE TO MAIN SCREEN
   }
 
   render() {
