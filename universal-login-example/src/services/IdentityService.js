@@ -24,6 +24,7 @@ class IdentityService {
           privateKey: this.privateKey,
           address: this.identity.address
         };
+        localStorage.setItem("boomerang-identity", JSON.stringify(this.identity)); //MAKE THIS MORE SECURE, THIS IS TEMPORARY WAY TO STORE USER IDENTITY. (LOCALSTORAGE)
         this.emitter.emit('setView', 'MainScreen');
       }
     });
