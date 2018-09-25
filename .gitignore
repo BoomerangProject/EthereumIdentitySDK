@@ -1,6 +1,7 @@
 .idea
 .DS_Store
 yarn-error.log
+/.vscode
 /node_modules
 /universal-login-contracts/build/
 /universal-login-contracts/node_modules
