@@ -1,7 +1,7 @@
 # Boomerang Universal Login Proof of Concept
 The Boomerang Universal Login Proof of Concept will bootstrap the Ethereum IdentitySDK github project and build features upon it.
 
-[![Build Status](https://travis-ci.com/EthWorks/EthereumIdentitySDK.svg?branch=master)](https://travis-ci.com/EthWorks/EthereumIdentitySDK)
+[![Build Status](https://travis-ci.com/EthWorks/UniversalLoginSDK.svg?branch=master)](https://travis-ci.com/EthWorks/UniversalLoginSDK)
 
 # Ethereum IdentitySDK
 
@@ -144,11 +144,20 @@ Where config file is a JSON file in the following format:
 
 Default port is `3311`, `privateKey` is the only required field.
 
-## Running example on dev environment
-Start with building all three projects (`universal-login-relayer`, `universal-login-sdk` and `universal-login-example`). From the main project directory run:
+## Running example on dev environment (quick option)
+To install dependencies and build projects run following commands from the main project directory:
 ```sh
-./script/build.sh
+yarn
+yarn build
 ```
+
+To run example:
+```sh
+cd universal-login-example
+yarn dev:start
+```
+
+## Running example on dev environment (manual option)
 
 Before running the example, first you must start a mock blockchain. From the `universal-login-relayer` directory run the following command:
 ```sh
@@ -169,4 +178,4 @@ yarn start
 
 ## License
 
-Ethereum Identity SDK  is released under the [MIT License](https://opensource.org/licenses/MIT).
+Universal Login SDK  is released under the [MIT License](https://opensource.org/licenses/MIT).
