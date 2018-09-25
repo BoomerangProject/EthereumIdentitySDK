@@ -23,7 +23,7 @@ class PendingAuthorizations extends Component {
   }
 
   componentWillUnmount() {
-    this.subscription.remove();
+    //this.subscription.remove();
   }
 
   onAuthorisationChanged(authorisations) {
