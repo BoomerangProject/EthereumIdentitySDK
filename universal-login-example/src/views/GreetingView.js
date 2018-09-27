@@ -20,7 +20,7 @@ class GreetingView extends Component {
             <span className="checkmark-ico icon-check"></span>
             <div>
               <p>You created a new account</p>
-              <p>Recieved 10 BOOM</p>
+              <p>Recieved 20 BOOM</p>
             </div>
           </div>
           <hr className="separator" />
