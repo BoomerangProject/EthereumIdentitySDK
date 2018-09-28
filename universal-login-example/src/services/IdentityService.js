@@ -1,9 +1,7 @@
 import {Wallet} from 'ethers';
-import {Interface} from 'ethers';
-import Token from '../../build/Token';
 
 class IdentityService {
-  constructor(sdk, emitter, tokenContractAddress, tokenService = []) {
+  constructor(sdk, emitter) {
     this.sdk = sdk;
     this.emitter = emitter;
     if (localStorage.getItem('boomerang-identity')) {
@@ -52,16 +50,6 @@ class IdentityService {
     };
     localStorage.setItem("boomerang-identity", JSON.stringify(this.identity)); //MAKE THIS MORE SECURE, THIS IS TEMPORARY WAY TO STORE USER IDENTITY. (LOCALSTORAGE)
     this.emitter.emit('identityCreated', this.identity);
-    await this.getTokens();
-  }
-
-  async getTokens() {
-    const message = {
-      to: this.tokenContractAddress,
-      value: 0,
-      data: this.tokenDripFunction
-    };
-    await this.execute(message);
   }
 
   async clearIdentity() {
